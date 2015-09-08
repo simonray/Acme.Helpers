@@ -1,0 +1,15 @@
+{
+  "version": "1.0.0-beta7",
+
+  "dependencies": {
+    "Acme.Helpers": "1.0.0-*",
+    "Microsoft.AspNet.Mvc": "6.0.0-beta7",
+    "Microsoft.AspNet.Mvc.TagHelpers": "6.0.0-beta7",
+    "Microsoft.AspNet.Mvc.Core": "6.0.0-beta7"
+  },
+
+  "frameworks": {
+    "dnx451": { },
+    "dnxcore50": { }
+  }
+}
