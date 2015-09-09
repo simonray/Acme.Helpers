@@ -1,0 +1,24 @@
+﻿@inject Microsoft.Framework.OptionsModel.IOptions<Acme.Helpers.Website.AppSettings> AppSettings
+
+@{
+    ViewBag.Title = "Package";
+    ViewBag.Package = $"Acme.Helpers.Table -Version {@AppSettings.Options.Version} -pre";
+}
+
+<div class="col-md-12">
+    <h3>Acme.Helpers.Table <small><span class="label label-default">@AppSettings.Options.Version</span></small></h3>
+    <p>Contains:</p>
+    <ul>
+        <li><code>&lt;table&gt;</code> - Auto-generated model based tables</li>
+    </ul>
+    <h3>Installation</h3>
+    <nuget-command package=@ViewBag.Package />
+
+    <h3>Configuration</h3>
+    Add the following to the <code>_ViewImports.cshtml</code> file.
+<pre>
+@@addTagHelper "*, @ViewBag.Package"
+@@using Acme.Helpers
+</pre>
+
+</div>

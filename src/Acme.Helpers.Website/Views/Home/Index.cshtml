@@ -1,0 +1,79 @@
+﻿@inject Microsoft.Framework.OptionsModel.IOptions<Acme.Helpers.Website.AppSettings> AppSettings
+
+@{
+    ViewData["Title"] = "Acme.Helpers";
+}
+
+@section Banner {
+    <header class="page-header">
+        <div class="inner">
+            <h1>
+                <i class="fa fa-code"></i> Acme Helpers <small><span class="label label-default">@AppSettings.Options.Version</span></small>
+            </h1>
+            <h3>
+                Contains a collection of custom Tag Helpers for building ASP.NET 5, MVC 6 and Core applications.
+                <br />
+                Includes highly customizable pagination and easy-to-use auto-generating tables.
+            </h3>
+            <h3>
+                <a href="@AppSettings.Options.GithubSource" data-title="View Source" class="btn btn-lg btn-info"><i class="fa fa-github"></i> View Source</a>
+                <a href="@AppSettings.Options.GithubDownload" data-title="Download Source" class="btn btn-lg btn-info"><i class="fa fa-github"></i> Download</a>
+            </h3>
+        </div>
+    </header>
+}
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="col-md-12">
+            <div class="wrapper text-center">
+                <div class="ribbon-wrapper-green">
+                    <div class="ribbon-green">table</div>
+                </div>
+                <a asp-action="index" asp-controller="table">
+                    <img src="~/images/sm-pager.png" style="border:0px; height: auto; max-width: 100%" />
+                </a>
+                <ul class="text-center">
+                    <li>Auto-generation</li>
+                    <li>Hand-crafted markup</li>
+                    <li>Supports Ajax</li>
+                    <li>No scripts required</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="col-md-12">
+            <div class="wrapper text-center">
+                <div class="ribbon-wrapper-green"><div class="ribbon-green">pager</div></div>
+                <a asp-action="index" asp-controller="pager">
+                    <img src="~/images/sm-table.png" style="border:0px; height: auto; max-width: 100%" />
+                </a>
+                <ul>
+                    <li>Simple to use</li>
+                    <li>Highly Customizable</li>
+                    <li>Supports Ajax</li>
+                    <li>No scripts required</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="col-md-12">
+            <div class="wrapper text-center">
+                <div class="ribbon-wrapper-green"><div class="ribbon-green">infinite</div></div>
+                <a asp-action="index" asp-controller="infinite">
+                    <img src="~/images/sm-more.png" style="border:0px; height: auto; max-width: 100%" />
+                </a>
+                <ul>
+                    <li>Clean and Simple</li>
+                    <li>Supports Ajax</li>
+                    <li>Customizable</li>
+                    <li>No scripts required</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h3 class="text-center">and more...</h3>

@@ -1,0 +1,27 @@
+﻿@inject Microsoft.Framework.OptionsModel.IOptions<Acme.Helpers.Website.AppSettings> AppSettings
+
+@{
+    ViewBag.Title = "Package";
+    ViewBag.Package = $"Acme.Helpers.Demo -Version {@AppSettings.Options.Version} -pre";
+}
+
+<div class="col-md-12">
+    <h3>Acme.Helpers.Demo <small><span class="label label-default">@AppSettings.Options.Version</span></small></h3>
+    <p>Contains:</p>
+    <ul>
+        <li><code>&lt;nuget-package&gt;</code> - Guide on how to install your nuget package</li>
+        <li><code>&lt;nuget-command&gt;</code> - Simple command on how to install your nuget package</li>
+        <li><code>&lt;github-forkme&gt;</code> - Configurable linking banner to promote your application</li>
+        <li><code>&lt;shield&gt;</code> - Wrapper for the shield.io style badges</li>
+    </ul>
+    <h3>Installation</h3>
+    <nuget-command package=@ViewBag.Package />
+
+    <h3>Configuration</h3>
+    Add the following to the <code>_ViewImports.cshtml</code> file.
+<pre>
+@@addTagHelper "*, Acme.Helpers.Demo"
+@@using Acme.Helpers
+</pre>
+
+</div>

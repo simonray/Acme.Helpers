@@ -1,0 +1,180 @@
+﻿
+@{
+    ViewBag.Title = "Pager - Usage";
+}
+
+<h3 id="basic">@ViewBag.Title</h3>
+
+<h4>Markup</h4>
+<code>&lt;pager [options] /&gt;</code>
+
+<h4>Options</h4>
+<table class="table table-responsive table-bordered table-striped">
+    <tr>
+        <th></th>
+        <th>Attribute</th>
+        <th>Type</th>
+        <th>Default</th>
+        <th>Description</th>
+    </tr>
+    <tbody>
+        <tr>
+            <td><a asp-action="basic"><i class="fa fa-link"></i></a></td>
+            <td><code>asp-for</code></td>
+            <td>string</td>
+            <td>n/a</td>
+            <td>An expression containing the manadatory pager parameters.</td>
+        </tr>
+
+        <tr>
+            <td rowspan="3"><a asp-action="basic"><i class="fa fa-link"></i></a></td>
+            <td><code>asp-action</code></td>
+            <td>string</td>
+            <td>n/a</td>
+            <td>The name of the action method.</td>
+        </tr>
+
+        <tr>
+            <td><code>asp-controller</code></td>
+            <td>string</td>
+            <td>n/a</td>
+            <td>The name of the controller.</td>
+        </tr>
+
+        <tr>
+            <td><code>asp-route-*</code></td>
+            <td>string</td>
+            <td>n/a</td>
+            <td>Any additional route parameters that may be required.</td>
+        </tr>
+
+        <tr>
+            <td rowspan="3"><a asp-action="basic"><i class="fa fa-link"></i></a></td>
+            <td><code>page</code></td>
+            <td>int</td>
+            <td>1</td>
+            <td>Current page.</td>
+        </tr>
+        <tr>
+            <td><code>page-size</code></td>
+            <td>int</td>
+            <td>10</td>
+            <td>Number of rows shown on the page.</td>
+        </tr>
+        <tr>
+            <td><code>total</code></td>
+            <td>int</td>
+            <td>0</td>
+            <td>Total number of records in the enumeration.</td>
+        </tr>
+
+        <tr>
+            <td><a href="#links"><i class="fa fa-link"></i></a></td>
+            <td><code>links</code></td>
+            <td>int</td>
+            <td>5</td>
+            <td>The maximum number of page links to be shown.</td>
+        </tr>
+        <tr>
+            <td><a href="#halign"><i class="fa fa-link"></i></a></td>
+            <td><code>halign</code></td>
+            <td>HorizontalAlignment</td>
+            <td>Right</td>
+            <td>Set the horizontal alignment.</td>
+        </tr>
+        <tr>
+            <td><a href="#showstatus"><i class="fa fa-link"></i></a></td>
+            <td><code>show-status</code></td>
+            <td>bool</td>
+            <td>true</td>
+            <td>Show the current page status message.</td>
+        </tr>
+        <tr>
+            <td><a href="#customstatus"><i class="fa fa-link"></i></a></td>
+            <td><code>status-format</code></td>
+            <td>string</td>
+            <td>Showing {0} to {1} of {2} entries</td>
+            <td>Pager status message.</td>
+        </tr>
+        <tr>
+            <td><a href="#showsizes"><i class="fa fa-link"></i></a></td>
+            <td><code>show-sizes</code></td>
+            <td>bool</td>
+            <td>true</td>
+            <td>Possible page sizes that can be changed by the user.</td>
+        </tr>
+        <tr>
+            <td><a href="#customsizes"><i class="fa fa-link"></i></a></td>
+            <td><code>sizes-format</code></td>
+            <td>string</td>
+            <td>10, 25, 50, 100</td>
+            <td>A comma-separated list of the available page sizes that can be selected.</td>
+        </tr>
+        <tr>
+            <td><a href="#class"><i class="fa fa-link"></i></a></td>
+            <td><code>class</code></td>
+            <td>string</td>
+            <td>pagination</td>
+            <td>Set the class to be used by the pager. For example "pagination pagination-lg".</td>
+        </tr>
+
+
+        <tr>
+            <td><a href="#visibility"><i class="fa fa-link"></i></a></td>
+            <td><code>hide-first-last</code></td>
+            <td>bool</td>
+            <td>false</td>
+            <td>Set the visibility of the first and last buttons.</td>
+        </tr>
+
+        <tr>
+            <td><a href="#visibility"><i class="fa fa-link"></i></a></td>
+            <td><code>hide-next-prev</code></td>
+            <td>bool</td>
+            <td>false</td>
+            <td>Set the visibility of the next and previous buttons.</td>
+        </tr>
+
+        <tr>
+            <td><a href="#visibility"><i class="fa fa-link"></i></a></td>
+            <td><code>hide-page-skips</code></td>
+            <td>bool</td>
+            <td>false</td>
+            <td>Set the visibility for all of the skip buttons.</td>
+        </tr>
+
+        <tr>
+            <td><a href="#icons"><i class="fa fa-link"></i></a></td>
+            <td><code>first-icon</code></td>
+            <td>string</td>
+            <td>-</td>
+            <td>Set the icon for the first button.</td>
+        </tr>
+        <tr>
+            <td><a href="#icons"><i class="fa fa-link"></i></a></td>
+            <td><code>prev-icon</code></td>
+            <td>string</td>
+            <td>-</td>
+            <td>Set the icon for the previous button.</td>
+        </tr>
+        <tr>
+            <td><a href="#icons"><i class="fa fa-link"></i></a></td>
+            <td><code>next-icon</code></td>
+            <td>string</td>
+            <td>-</td>
+            <td>Set the icon for the next button.</td>
+        </tr>
+        <tr>
+            <td><a href="#icons"><i class="fa fa-link"></i></a></td>
+            <td><code>last-icon</code></td>
+            <td>string</td>
+            <td>-</td>
+            <td>Set the icon for the last button.</td>
+        </tr>
+    </tbody>
+</table>
+
+<h4>Examples</h4>
+<ul>
+    @await Html.PartialAsync("_Examples")
+</ul>

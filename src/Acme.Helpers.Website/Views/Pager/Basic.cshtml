@@ -1,0 +1,45 @@
+﻿@inject Microsoft.Framework.OptionsModel.IOptions<Acme.Helpers.Website.AppSettings> AppSettings
+@model Acme.Helpers.Website.Models.IPagedList<Acme.Helpers.Website.Models.BasicPersonView>
+
+@{
+    ViewBag.Title = "Pager - Basic Sample";
+}
+
+<h3 id="basic">@ViewBag.Title</h3>
+
+<!-- Tab Buttons -->
+<ul id="tabstrip" class="nav nav-tabs" role="tablist">
+    <li class="active"><a href="#Output" role="tab" data-toggle="tab">Output</a></li>
+    <li><a href="#Source" role="tab" data-toggle="tab">Source</a></li>
+</ul>
+
+<!-- Tab Content Containers -->
+<div class="tab-content">
+    <div class="tab-pane fade in active" id="Output">
+        <table class="table">
+            <tr>
+                <th><display-name asp-for="@Model.First().Id" /></th>
+                <th><display-name asp-for="@Model.First().FirstName" /></th>
+                <th><display-name asp-for="@Model.First().LastName" /></th>
+            </tr>
+
+            @foreach (var item in Model.Items)
+            {
+                <tr>
+                    <td><display asp-for="@item.Id" /></td>
+                    <td><display asp-for="@item.FirstName" /></td>
+                    <td><display asp-for="@item.LastName" /></td>
+                </tr>
+            }
+        </table>
+        <pager show-status="true" show-sizes="true" asp-action="basic" asp-controller="pager" page-index="Model.Page" page-size="Model.PageSize" total="Model.TotalCount" />
+    </div>
+    <div class="tab-pane fade" id="Source">
+        <code><small>Markup</small></code>
+<pre class="prettyprint">
+&lt;pager show-status="true" show-sizes="true" asp-action="basic" asp-controller="pager" page-index="Model.Page" page-size="Model.PageSize" total="Model.TotalCount" /&gt;
+</pre>
+    </div>
+</div>
+
+

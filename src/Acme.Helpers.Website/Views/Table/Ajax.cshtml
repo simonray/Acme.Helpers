@@ -1,0 +1,32 @@
+﻿@inject Microsoft.Framework.OptionsModel.IOptions<Acme.Helpers.Website.AppSettings> AppSettings
+@model Acme.Helpers.Website.Models.IPagedList<Acme.Helpers.Website.Models.BasicPersonView>
+
+@{
+    ViewBag.Title = "Table - Ajax Support";
+}
+
+
+<h3 id="basic">@ViewBag.Title</h3>
+<p>An example showing an auto-generated table using the public view model properties using Ajax.</p>
+
+<!-- Tab Buttons -->
+<ul id="tabstrip" class="nav nav-tabs" role="tablist">
+    <li class="active"><a href="#Output" role="tab" data-toggle="tab">Output</a></li>
+    <li><a href="#Source" role="tab" data-toggle="tab">Source</a></li>
+</ul>
+
+<!-- Tab Content Containers -->
+<div class="tab-content">
+    <div class="tab-pane fade in active" id="Output">
+        @await Html.PartialAsync("_AjaxTable", @Model)
+    </div>
+    <div class="tab-pane fade" id="Source">
+        <code><small>Markup</small></code>
+<pre class="prettyprint">
+@@model Acme.Helpers.Website.Models.IPagedList<Acme.Helpers.Website.Models.BasicPersonView>
+&lt;table class="table" asp-for="@@Model" ajax="true" /&gt;
+</pre>
+    </div>
+</div>
+
+

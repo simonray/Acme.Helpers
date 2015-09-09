@@ -1,0 +1,112 @@
+﻿@model Acme.Helpers.Website.Models.DetailedPersonView
+
+@{
+    ViewBag.Title = "Display Name - Basic Sample";
+}
+
+<h3 id="basic">@ViewBag.Title</h3>
+
+<!-- Tab Buttons -->
+<ul id="tabstrip" class="nav nav-tabs" role="tablist">
+    <li class="active"><a href="#Output" role="tab" data-toggle="tab">Output</a></li>
+    <li><a href="#Source" role="tab" data-toggle="tab">Source</a></li>
+</ul>
+
+<!-- Tab Content Containers -->
+<div class="tab-content">
+    <div class="tab-pane fade in active" id="Output">
+        <table class="table table-responsive table-striped js-options-table">
+            <thead>
+                <tr>
+                    <th>annotation(s)</th>
+                    <th>model property</th>
+                    <th>model value</th>
+                    <th><code>&lt;label asp-for&gt;</code></th>
+                    <th><code>@@Html.DispayNameFor</code></th>
+                    <th><code>&lt;display-name asp-for&gt;</code></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><div class="label label-default">-</div></td>
+                    <td>@nameof(Model.Id)</td>
+                    <td>@Model.Id</td>
+                    <td><label asp-for="Id"></label></td>
+                    <td>@Html.DisplayNameFor(m => m.Id)</td>
+                    <td style="background-color:lightgoldenrodyellow"><display-name asp-for="Id"></display-name></td>
+                </tr>
+                <tr>
+                    <td><div class="label label-default">Display("First")</div></td>
+                    <td>@nameof(Model.FirstName)</td>
+                    <td>@Model.FirstName</td>
+                    <td><label asp-for="FirstName"></label></td>
+                    <td>@Html.DisplayNameFor(m => m.FirstName)</td>
+                    <td style="background-color:lightgoldenrodyellow"><display-name asp-for="FirstName"></display-name></td>
+                </tr>
+                <tr>
+                    <td><div class="label label-default">Display("Last")</div></td>
+                    <td>@nameof(Model.LastName)</td>
+                    <td>@Model.LastName</td>
+                    <td><label asp-for="LastName"></label></td>
+                    <td>@Html.DisplayNameFor(m => m.LastName)</td>
+                    <td style="background-color:lightgoldenrodyellow"><display-name asp-for="LastName"></display-name></td>
+                </tr>
+                <tr>
+                    <td><div class="label label-default">-</div></td>
+                    <td>@nameof(Model.BirthDate)</td>
+                    <td>@Model.BirthDate</td>
+                    <td><label asp-for="BirthDate"></label></td>
+                    <td>@Html.DisplayNameFor(m => m.BirthDate)</td>
+                    <td style="background-color:lightgoldenrodyellow"><display-name asp-for="BirthDate"></display-name></td>
+                </tr>
+                <tr>
+                    <td><div class="label label-default">-</div></td>
+                    <td>@nameof(Model.Email)</td>
+                    <td>@Model.Email</td>
+                    <td><label asp-for="Email"></label></td>
+                    <td>@Html.DisplayNameFor(m => m.Email)</td>
+                    <td style="background-color:lightgoldenrodyellow"><display-name asp-for="Email"></display-name></td>
+                </tr>
+                <tr>
+                    <td><div class="label label-default">-</div></td>
+                    <td>@nameof(Model.Salary)</td>
+                    <td>@Model.Salary</td>
+                    <td><label asp-for="Salary"></label></td>
+                    <td>@Html.DisplayNameFor(m => m.Salary)</td>
+                    <td style="background-color:lightgoldenrodyellow"><display-name asp-for="Salary"></display-name></td>
+                </tr>
+                <tr>
+                    <td><div class="label label-default">-</div></td>
+                    <td>@nameof(Model.FavoriteColor)</td>
+                    <td>@Model.FavoriteColor</td>
+                    <td><label asp-for="FavoriteColor"></label></td>
+                    <td>@Html.DisplayNameFor(m => m.FavoriteColor)</td>
+                    <td style="background-color:lightgoldenrodyellow"><display-name asp-for="FavoriteColor"></display-name></td>
+                </tr>
+                <tr>
+                    <td><div class="label label-default">-</div></td>
+                    <td>@nameof(Model.FullName)</td>
+                    <td>@Model.FullName</td>
+                    <td><label asp-for="FullName"></label></td>
+                    <td>@Html.DisplayNameFor(m => m.FullName)</td>
+                    <td style="background-color:lightgoldenrodyellow"><display-name asp-for="FullName" /></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="tab-pane fade" id="Source">
+        <code><small>Markup</small></code>
+<pre class="prettyprint">
+&lt;display-name asp-for="Id" /&gt;
+&lt;display-name asp-for="FirstName" /&gt;
+&lt;display-name asp-for="LastName" /&gt;
+&lt;display-name asp-for="BirthDate" /&gt;
+&lt;display-name asp-for="Email" /&gt;
+&lt;display-name asp-for="Salary" /&gt;
+&lt;display-name asp-for="FavoriteColor" /&gt;
+&lt;display-name asp-for="FullName" /&gt;
+</pre>
+    </div>
+</div>
+
+

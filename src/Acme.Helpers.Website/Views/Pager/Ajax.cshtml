@@ -1,0 +1,32 @@
+﻿@model Acme.Helpers.Website.Models.IPagedList<Acme.Helpers.Website.Models.BasicPersonView>
+
+@{
+    ViewBag.Title = "Pager - Ajax Support";
+}
+
+<h3 id="basic">@ViewBag.Title</h3>
+
+<!-- Tab Buttons -->
+<ul id="tabstrip" class="nav nav-tabs" role="tablist">
+    <li class="active"><a href="#Output" role="tab" data-toggle="tab">Output</a></li>
+    <li><a href="#Source" role="tab" data-toggle="tab">Source</a></li>
+</ul>
+
+<!-- Tab Content Containers -->
+<div class="tab-content">
+    <div class="tab-pane fade in active" id="Output">
+        <div id="results">
+            @await Html.PartialAsync("_AjaxTable", @Model)
+        </div>
+    </div>
+    <div class="tab-pane fade" id="Source">
+        <code><small>Markup</small></code>
+<pre class="prettyprint">
+&lt;pager show-status=true
+    show-sizes=true
+    data-ajax-update="#results"
+    data-ajax-mode="replace"
+    data-ajax="true" /&gt;
+</pre>
+    </div>
+</div>

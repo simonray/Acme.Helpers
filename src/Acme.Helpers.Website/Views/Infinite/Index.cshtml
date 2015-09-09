@@ -1,0 +1,112 @@
+﻿
+@{
+    ViewBag.Title = "Infinite - Usage";
+}
+
+<h3 id="basic">@ViewBag.Title</h3>
+
+<p>Infinite scrolling is a technique where additional content for a web page is appended to the bottom of the page when the user requires more content.</p>
+
+<h4>Markup</h4>
+<code>&lt;infinite [options] /&gt;</code>
+
+<h4>Options</h4>
+<table class="table table-bordered ">
+    <tr>
+        <th></th>
+        <th>Attribute</th>
+        <th>Type</th>
+        <th>Default</th>
+        <th>Description</th>
+    </tr>
+    <tbody>
+        <tr>
+            <td><a href="#for"><i class="fa fa-link"></i></a></td>
+            <td>asp-for</td>
+            <td>string</td>
+            <td>n/a</td>
+            <td>An expression containing an enumerable list.</td>
+        </tr>
+        <tr>
+            <td rowspan="5"><a href="#anchor"><i class="fa fa-link"></i></a></td>
+            <td>asp-action</td>
+            <td>string</td>
+            <td>Current Action</td>
+            <td>The name of the action method.</td>
+        </tr>
+        <tr>
+            <td>asp-controller</td>
+            <td>string</td>
+            <td>Current Controller</td>
+            <td>Gets or sets the controller.</td>
+        </tr>
+        <tr>
+            <td>asp-protocol</td>
+            <td>string</td>
+            <td>-</td>
+            <td>The protocol for the URL, such as &quot;http&quot; or &quot;https&quot;.</td>
+        </tr>
+        <tr>
+            <td>asp-host</td>
+            <td>string</td>
+            <td>-</td>
+            <td>The host name.</td>
+        </tr>
+        <tr>
+            <td>asp-fragment</td>
+            <td>string</td>
+            <td>-</td>
+            <td>The URL fragment name.</td>
+        </tr>
+
+        <tr>
+            <td><a href="#id"><i class="fa fa-link"></i></a></td>
+            <td>id</td>
+            <td>string</td>
+            <td>auto-generated</td>
+            <td>Id that will be assocated to anchor/button control. If none is specified one will be auto-generated.</td>
+        </tr>
+
+        <tr>
+            <td><a href="#replace"><i class="fa fa-link"></i></a></td>
+            <td>replace-id</td>
+            <td>string</td>
+            <td>auto-generated</td>
+            <td>Id of an element where the result of the load more action will be inserted/replaced.</td>
+        </tr>
+
+        <tr>
+            <td rowspan="2"><a href="#parameters"><i class="fa fa-link"></i></a></td>
+            <td>skip</td>
+            <td>int</td>
+            <td></td>
+            <td rowspan="2">
+                These are the basic parameters required for the pager to operate.
+                If omitted, the control will attempt to obtain the values from either the specified <code>asp-for</code> model (if specified) or the current view model.
+                An <code>[ArgumentException]</code> will be thrown if the values can not be obtained.
+            </td>
+        </tr>
+        <tr>
+            <td>total</td>
+            <td>int</td>
+            <td></td>
+        </tr>
+
+        <tr>
+            <td><a href="#content"><i class="fa fa-link"></i></a></td>
+            <td>&lt;&gt;#content&lt;/&gt;</td>
+            <td>string</td>
+            <td>&quot;Load More&quot;</td>
+            <td>
+                Specify the message that will be displayed on the anchor/button.
+                Tokens can also be specified in the string in the form of &quot;{{name}}&quot;. These tokens should exist in the current view model (as a property) and its value used as the string replacement.
+            </td>
+        </tr>
+
+    </tbody>
+</table>
+
+<h4>Examples</h4>
+<ul>
+    @await Html.PartialAsync("_Examples")
+</ul>

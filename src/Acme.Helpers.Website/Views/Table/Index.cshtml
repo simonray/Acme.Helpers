@@ -1,0 +1,69 @@
+﻿
+@{
+    ViewBag.Title = "Table - Usage";
+}
+
+<h3 id="basic">@ViewBag.Title</h3>
+
+<h4>Markup</h4>
+<code>&lt;table [options] /&gt;</code>
+
+<h4>Options</h4>
+<table class="table table-bordered ">
+    <tr>
+        <th></th>
+        <th>Attribute</th>
+        <th>Type</th>
+        <th>Default</th>
+        <th>Description</th>
+    </tr>
+    <tbody>
+        <tr>
+            <td><i class="fa fa-link"></i></td>
+            <td>asp-for</td>
+            <td>string</td>
+            <td>n/a</td>
+            <td>An expression containing an enumerable list.</td>
+        </tr>
+        <tr>
+            <td><i class="fa fa-link"></i></td>
+            <td>auto-generate-columns</td>
+            <td>bool</td>
+            <td>true</td>
+            <td>Generate columns automatically based on the model source.</td>
+        </tr>
+        <tr>
+            <td><i class="fa fa-link"></i></td>
+            <td>no-records-message</td>
+            <td>string</td>
+            <td>"No matching records found"</td>
+            <td>The message shown if there are no rows in the table.</td>
+        </tr>
+        <tr>
+            <td><a asp-action="pager" asp-controller="table"><i class="fa fa-link"></i></a></td>
+            <td>pagination</td>
+            <td>bool</td>
+            <td>true</td>
+            <td>Use the in-built default pager or none.</td>
+        </tr>
+        <tr>
+            <td><a href="#header"><i class="fa fa-link"></i></a></td>
+            <td>show-header</td>
+            <td>bool</td>
+            <td>true</td>
+            <td>Show or hide the header.</td>
+        </tr>
+        <tr>
+            <td><i class="fa fa-link"></i></td>
+            <td>ajax</td>
+            <td>bool</td>
+            <td>false</td>
+            <td>Support for Ajax.</td>
+        </tr>
+    </tbody>
+</table>
+
+<h4>Examples</h4>
+<ul>
+    @await Html.PartialAsync("_Examples")
+</ul>

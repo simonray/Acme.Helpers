@@ -1,0 +1,22 @@
+﻿@model Acme.Helpers.Website.Models.BasicPersonView
+
+@{
+    ViewBag.Title = "Person Details";
+}
+
+<h3>Person Details:</h3>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr class="panel-heading"><th>Property</th><th>Value</th></tr>
+    </thead>
+    <tbody>
+        <tr><td>@nameof(Model.Id)</td><td>@Model.Id</td></tr>
+        <tr><td>@nameof(Model.FirstName)</td><td>@Model.FirstName</td></tr>
+        <tr><td>@nameof(Model.LastName)</td><td>@Model.LastName</td></tr>
+        <tr><td>@nameof(Model.BirthDate)</td><td>@Model.BirthDate</td></tr>
+        <tr><td>@nameof(Model.Email)</td><td>@Model.Email</td></tr>
+        <tr><td>@nameof(Model.FavoriteColor)</td><td>@Model.FavoriteColor</td></tr>
+        <tr><td>@nameof(Model.FullName)</td><td>@Model.FullName</td></tr>
+    </tbody>
+</table>

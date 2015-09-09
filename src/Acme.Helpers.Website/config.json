@@ -1,0 +1,8 @@
+{
+  "AppSettings": {
+    "Repository": "simonray/acme.helpers",
+    "Version": "1.0.0-beta7",
+    "PagerPageSize": 5,
+    "InfinitePageSize": 3
+  }
+}

@@ -1,0 +1,27 @@
+﻿@model Acme.Helpers.Website.Models.IPagedList<Acme.Helpers.Website.Models.BasicPersonView>
+
+<table class="table table-responsive">
+    <tr>
+        <th><display-name asp-for="@Model.First().Id" /></th>
+        <th><display-name asp-for="@Model.First().FirstName" /></th>
+        <th><display-name asp-for="@Model.First().LastName" /></th>
+    </tr>
+
+    @foreach (var item in Model.Items)
+    {
+        <tr>
+            <td><display asp-for="@item.Id" /></td>
+            <td><display asp-for="@item.FirstName" /></td>
+            <td><display asp-for="@item.LastName" /></td>
+        </tr>
+    }
+</table>
+
+<p>
+    <pager show-status=true
+           show-sizes=true
+           data-ajax-update="#results"
+           data-ajax-mode="replace"
+           data-ajax="true">
+    </pager>
+</p>

@@ -1,0 +1,81 @@
+﻿<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a asp-controller="Home" asp-action="Index" class="navbar-brand"><i class="fa fa-code"></i> Acme.Helpers</a>
+    </div>
+
+    <div class="collapse navbar-collapse js-navbar-collapse">
+        <ul class="nav navbar-nav">
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Packages <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a asp-action="index" asp-controller="config">Acme.Helpers</a></li>
+                    <li><a asp-action="demo" asp-controller="config">Acme.Helpers.Demo</a></li>
+                    <li><a asp-action="pager" asp-controller="config">Acme.Helpers.Pager</a></li>
+                    <li><a asp-action="table" asp-controller="config">Acme.Helpers.Table</a></li>
+                </ul>
+            </li>
+            <li class="dropdown dropdown-large">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"> TagHelpers <b class="caret"></b></a>
+                <ul class="dropdown-menu dropdown-menu-large">
+                    <li class="col-sm-3">
+                        <ul>
+                            <li class="dropdown-header">Display</li>
+                            <li class="divider"></li>
+                            <li><a asp-action="basic" asp-controller="display">Basic Sample</a></li>
+                            
+                            <li class="dropdown-header">Display Name</li>
+                            <li class="divider"></li>
+                            <li><a asp-action="basic" asp-controller="displayname">Basic Sample</a></li>
+                        </ul>
+                    </li>
+                    <li class="col-sm-3">
+                        <ul>
+                            <li class="dropdown-header">Github Forkme</li>
+                            <li class="divider"></li>
+                            <li class="disabled"><a asp-action="#" asp-controller="demo" asp-fragment="forkme">Basic Sample</a></li>
+
+                            <li class="dropdown-header">Nuget Command</li>
+                            <li class="divider"></li>
+                            <li class="disabled"><a asp-action="#" asp-controller="demo" asp-fragment="command">Basic Sample</a></li>
+
+                            <li class="dropdown-header">Nuget Panel</li>
+                            <li class="divider"></li>
+                            <li class="disabled"><a asp-action="#" asp-controller="demo" asp-fragment="panel">Basic Sample</a></li>
+
+                            <li class="dropdown-header">Shield</li>
+                            <li class="divider"></li>
+                            <li class="disabled"><a asp-controller="demo" asp-fragment="panel">Basic Sample</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="col-sm-3">
+                        <ul>
+                            <li class="dropdown-header">Pager</li>
+                            <li class="divider"></li>
+                            <li><a asp-action="index" asp-controller="pager">Usage</a></li>
+                            @await Html.PartialAsync("~/Views/Pager/_Examples")
+
+                            <li class="dropdown-header">Infinite</li>
+                            <li class="divider"></li>
+                            <li><a asp-action="index" asp-controller="infinite">Usage</a></li>
+                            @await Html.PartialAsync("~/Views/Infinite/_Examples")
+                        </ul>
+                    </li>
+                    <li class="col-sm-3">
+                        <ul>
+                            <li class="dropdown-header">Table</li>
+                            <li class="divider"></li>
+                            <li><a asp-action="index" asp-controller="table">Usage</a></li>
+                            @await Html.PartialAsync("~/Views/Table/_Examples")
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div><!-- /.nav-collapse -->

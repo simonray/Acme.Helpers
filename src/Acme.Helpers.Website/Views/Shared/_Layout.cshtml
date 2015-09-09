@@ -1,0 +1,49 @@
+﻿@inject Microsoft.Framework.OptionsModel.IOptions<Acme.Helpers.Website.AppSettings> AppSettings
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <link href="~/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/lib/code-prettify/src/prettify.css" rel="stylesheet" />
+    <link href="~/css/flat-ui-custom.css" rel="stylesheet" />
+    <link href="~/css/dropdown-menu.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    @RenderSection("head", required: false)
+</head>
+<body>
+
+    <github-forkme repository="@AppSettings.Options.Repository" />
+ 
+    <div class="row">
+        @Html.Partial("_Header")
+        @RenderSection("Banner", required: false)
+    </div>
+
+    <div class="container">
+        @RenderBody()
+        <hr />
+    </div>
+
+    <br />
+    <br />
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <environment names="Staging,Production">
+        <script src="~/lib/hammer.js/hammer.js"></script>
+        <script src="~/lib/code-prettify/src/prettify.js"></script>
+        <script>
+            prettyPrint();
+        </script>
+    </environment>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

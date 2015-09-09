@@ -1,0 +1,9 @@
+﻿
+@foreach (var entry in Model.Items)
+{
+    <h5>@entry.FullName</h5>
+}
+
+<infinite id="anchor" class="btn-lg btn-success">
+    <i id="cogs" class="fa fa-cog"></i> Load More? ({{Skip}}/{{Total}})
+</infinite>

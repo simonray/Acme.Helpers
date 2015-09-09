@@ -1,0 +1,16 @@
+{
+  "name": "ASP.NET",
+  "private": true,
+  "dependencies": {
+    "bootstrap": "3.3.5",
+    "hammer.js": "2.0.4",
+    "jquery": "2.1.4",
+    "jquery-validation": "1.11.1",
+    "jquery-validation-unobtrusive": "3.2.2",
+    "jquery-ajax-unobtrusive": "3.2.3",
+    "Font-Awesome": "4.4.0",
+    "flat-ui": "2.2.2",
+    "code-prettify": "*"
+  }
+}
+

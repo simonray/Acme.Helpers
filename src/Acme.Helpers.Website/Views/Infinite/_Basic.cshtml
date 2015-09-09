@@ -1,0 +1,8 @@
+﻿@model Acme.Helpers.Website.Models.IInfiniteList<Acme.Helpers.Website.Models.BasicPersonView>
+
+@foreach (var entry in Model.Items)
+{
+    <h5>@entry.FullName</h5>
+}
+
+<infinite id="anchor" skip="@Model.Skip" total="Model.Total" class="btn-lg btn-success" />
