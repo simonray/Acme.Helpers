@@ -1,0 +1,56 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{70FFA805-BA25-46DA-ACCA-C13B50540FC5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A2EF02B8-873D-4AEC-B1B0-1DA8F0E64D92}"
+	ProjectSection(SolutionItems) = preProject
+		global.json = global.json
+		license.txt = license.txt
+		C:\Users\Simon\Documents\Visual Studio 2015\Projects\WebApplication1.beta7\NuGet.Config = C:\Users\Simon\Documents\Visual Studio 2015\Projects\WebApplication1.beta7\NuGet.Config
+		readme.md = readme.md
+	EndProjectSection
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Acme.Helpers", "src\Acme.Helpers\Acme.Helpers.xproj", "{7A16B343-29CB-4061-B741-C13D0A22B693}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Acme.Helpers.Pager", "src\Acme.Helpers.Pager\Acme.Helpers.Pager.xproj", "{2BA9290D-2B53-486C-9DAA-858482FB8AF7}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Acme.Helpers.Table", "src\Acme.Helpers.Table\Acme.Helpers.Table.xproj", "{02B3E274-362A-452A-A292-719D8A163678}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Acme.Helpers.Demo", "src\Acme.Helpers.Demo\Acme.Helpers.Demo.xproj", "{0652BF7E-86D4-444A-88FF-459D30A2F2F5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7A16B343-29CB-4061-B741-C13D0A22B693}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A16B343-29CB-4061-B741-C13D0A22B693}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A16B343-29CB-4061-B741-C13D0A22B693}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A16B343-29CB-4061-B741-C13D0A22B693}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2BA9290D-2B53-486C-9DAA-858482FB8AF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2BA9290D-2B53-486C-9DAA-858482FB8AF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2BA9290D-2B53-486C-9DAA-858482FB8AF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2BA9290D-2B53-486C-9DAA-858482FB8AF7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02B3E274-362A-452A-A292-719D8A163678}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02B3E274-362A-452A-A292-719D8A163678}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02B3E274-362A-452A-A292-719D8A163678}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02B3E274-362A-452A-A292-719D8A163678}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0652BF7E-86D4-444A-88FF-459D30A2F2F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0652BF7E-86D4-444A-88FF-459D30A2F2F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0652BF7E-86D4-444A-88FF-459D30A2F2F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0652BF7E-86D4-444A-88FF-459D30A2F2F5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{7A16B343-29CB-4061-B741-C13D0A22B693} = {70FFA805-BA25-46DA-ACCA-C13B50540FC5}
+		{2BA9290D-2B53-486C-9DAA-858482FB8AF7} = {70FFA805-BA25-46DA-ACCA-C13B50540FC5}
+		{02B3E274-362A-452A-A292-719D8A163678} = {70FFA805-BA25-46DA-ACCA-C13B50540FC5}
+		{0652BF7E-86D4-444A-88FF-459D30A2F2F5} = {70FFA805-BA25-46DA-ACCA-C13B50540FC5}
+	EndGlobalSection
+EndGlobal
