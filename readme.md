@@ -30,4 +30,4 @@ Includes:
 ## Change Log
 
 ### 1.0.0-beta7 (15-09-02)
-* Add &lt;load-more /&gt; TagHelper
+* Add &lt;infinite /&gt; TagHelper

@@ -92,7 +92,7 @@ namespace Acme.Helpers.TagHelpers
             var replaceId = ReplaceId ?? context.UniqueId;
             var content = (await context.GetChildContentAsync()).ReplaceStringTokens(Explorer);
             if (string.IsNullOrEmpty(content))
-                content = StringResources.InfinateLabelText;
+                content = StringResources.InfiniteLabelText;
 
             FluentTagBuilder builder = new FluentTagBuilder()
                 .StartTag("div")

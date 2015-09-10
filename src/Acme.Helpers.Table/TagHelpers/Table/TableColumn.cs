@@ -11,15 +11,15 @@ namespace Acme.Helpers.TagHelpers
         public string For { get; set; }
         public string Title { get; set; }
         public string Style { get; set; }
-        public bool Visible { get; set; }
         public string Width { get; set; }
         public string CellDisplayFormat { get; set; }
         public string CellNullDisplayText { get; set; }
         public string CellUihint { get; set; }
+        public bool CellVisible { get; set; }
 
         public TableColumn()
         {
-            Visible = true;
+            CellVisible = true;
         }
 
         public TableColumn(ModelMetadata meta)
@@ -28,10 +28,11 @@ namespace Acme.Helpers.TagHelpers
             Id = meta.PropertyName;
             For = meta.PropertyName;
             Title = meta.DisplayName ?? meta.PropertyName.SplitCamelCase();
-            Visible = !meta.HideSurroundingHtml;
+
             CellDisplayFormat = meta.DisplayFormatString;
             CellNullDisplayText = meta.NullDisplayText;
             CellUihint = meta.TemplateHint;
+            CellVisible = !meta.HideSurroundingHtml;
         }
 
         public TableColumn(ThTagHelper th, string content)
@@ -41,12 +42,12 @@ namespace Acme.Helpers.TagHelpers
             For = th.AspFor;
             Title = content ?? Id.SplitCamelCase();
             Style = th.Style;
-            Visible = th.HeaderVisible ?? true;
             Width = th.Width;
-
+            
             CellDisplayFormat = th.CellDisplayFormat;
             CellNullDisplayText = th.CellNullDisplayText;
             CellUihint = th.CellUihint;
+            CellVisible = th.CellVisible ?? true;
         }
 
         internal void Merge(TableColumn col)
@@ -55,6 +56,7 @@ namespace Acme.Helpers.TagHelpers
             CellDisplayFormat = col.CellDisplayFormat ?? CellDisplayFormat;
             CellNullDisplayText = col.CellNullDisplayText ?? CellNullDisplayText;
             CellUihint = col.CellUihint ?? CellUihint;
+            CellVisible = col.CellVisible;
         }
     }
 }

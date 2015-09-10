@@ -36,6 +36,10 @@ namespace Acme.Helpers.TagHelpers
         [HtmlAttributeName(UihintAttributeName)]
         public string CellUihint { get; set; }
         private const string UihintAttributeName = "cell-uihint";
+
+        [HtmlAttributeName(CellVisibleAttributeName)]
+        public bool? CellVisible { get; set; }
+        private const string CellVisibleAttributeName = "cell-visible";
         #endregion
 
         public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)

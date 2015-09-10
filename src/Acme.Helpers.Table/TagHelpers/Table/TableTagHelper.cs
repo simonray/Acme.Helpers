@@ -75,7 +75,7 @@ namespace Acme.Helpers.TagHelpers
             var uniqueId = context.UniqueId;
 
             if (!AspFor.Metadata.IsCollectionType)
-                throw new ArgumentNullException($"Check '{ForAttributeName}' is of type {nameof(IEnumerable)} or if you have a '@model' has been defined in the view.");
+                throw new ArgumentNullException($"Check '{ForAttributeName}' is of type {nameof(IEnumerable)} and a '@model' has been defined in the view.");
 
             IList<TableColumn> columns = new List<TableColumn>();
             if (TableAutoGenerateColumns == true)
@@ -113,7 +113,7 @@ namespace Acme.Helpers.TagHelpers
                             tag.StartTag("th")
                                 .CombineAttribute("width", col.Width)
                                 .CombineAttribute("style", col.Style)
-                                .CombineAttributeIf(!col.Visible, "style", "display: none")
+                                .CombineAttributeIf(!col.CellVisible, "style", "display: none")
                                 .Append(GetHeaderValue(col))
                             .EndTag();
                         }
@@ -138,7 +138,7 @@ namespace Acme.Helpers.TagHelpers
                                         cols.StartTag("td")
                                             .CombineAttribute("width", col.Width)
                                             .CombineAttribute("style", col.Style)
-                                            .CombineAttributeIf(!col.Visible, "style", "display: none")
+                                            .CombineAttributeIf(!col.CellVisible, "style", "display: none")
                                             .Append(GetColumnValue(row, col))
                                         .EndTag();
                                     }
@@ -172,7 +172,6 @@ namespace Acme.Helpers.TagHelpers
             this.MapPropertiesByName(pager);
             pager.PagerShowStatus = TableDefaults.PagerShowSizes;
             pager.PagerShowSizes = TableDefaults.PagerShowStatus;
-            pager.AspFor = AspFor;
 
             await pager.ProcessAsync(context, helper);
             return helper.Content.GetContent();

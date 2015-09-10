@@ -21,7 +21,7 @@
         public static string PagerLastHint = "Last Page";
         public static string PagerLastText = ">>";
 
-        public static string InfinateLabelText = "Load More";
+        public static string InfiniteLabelText = "Load More";
 
         public static string TableNoRecordsText = "No matching records found";
     }

@@ -11,10 +11,6 @@ namespace Acme.Helpers.TagHelpers
         /// </summary>
         string HeaderId { get; set; }
         /// <summary>
-        /// Show or hide the header.
-        /// </summary>
-        bool? HeaderVisible { get; set; }
-        /// <summary>
         /// The display format of the value contained in the cell.
         /// </summary>
         string CellDisplayFormat { get; set; }
@@ -26,5 +22,9 @@ namespace Acme.Helpers.TagHelpers
         /// Apply a specific display template to the cell value.
         /// </summary>
         string CellUihint { get; set; }
+        /// <summary>
+        /// Is the column is visible or not.
+        /// </summary>
+        bool? CellVisible { get; set; }
     }
 }
