@@ -13,18 +13,18 @@ namespace Acme.Helpers.TagHelpers
         /// <summary>
         /// Id that will be assocated to anchor/button control. If none is specified one will be auto-generated.
         /// </summary>
-        string Id { get; set; }
+        string InfiniteId { get; set; }
         /// <summary>
         /// Id of an element where the result of the load more action will be inserted/replaced.
         /// </summary>
-        string ReplaceId { get; set; }
+        string InfiniteReplaceId { get; set; }
         /// <summary>
         /// Style attribute set against the pager.
         /// </summary>
-        string Style { get; set; }
+        string InfiniteStyle { get; set; }
         /// <summary>
         /// Style attribute set against the pagers container.
         /// </summary>
-        string ContainerStyle { get; set; }
+        string InfiniteContainerStyle { get; set; }
     }
 }

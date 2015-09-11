@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace Acme.Helpers.TagHelpers
 {
     [TargetElement("infinite")]
-    public class InfiniteTagHelper : TagHelper, ISupportInfinite, ISupportAnchor, ISupportFor
+    public class InfiniteTagHelper : TagHelper, ISupportFor, ISupportAnchor, ISupportInfinite
     {
         [ViewContext]
         public ViewContext ViewContext { get; set; }
@@ -36,13 +36,21 @@ namespace Acme.Helpers.TagHelpers
 
         #region ISupportInfinite
         /// <inheritDoc/>
-        public string Id { get; set; }
+        [HtmlAttributeName(InfiniteIdAttributeName)]
+        public string InfiniteId { get; set; }
+        private const string InfiniteIdAttributeName = "id";
         /// <inheritDoc/>
-        public string ReplaceId { get; set; }
+        [HtmlAttributeName(InfiniteReplaceIdAttributeName)]
+        public string InfiniteReplaceId { get; set; }
+        private const string InfiniteReplaceIdAttributeName = "replace-id";
         /// <inheritDoc/>
-        public string Style { get; set; } = LoadMoreDefaults.Style;
+        [HtmlAttributeName(InfiniteStyleAttributeName)]
+        public string InfiniteStyle { get; set; } = LoadMoreDefaults.Style;
+        private const string InfiniteStyleAttributeName = "style";
         /// <inheritDoc/>
-        public string ContainerStyle { get; set; } = LoadMoreDefaults.ContainerStyle;
+        [HtmlAttributeName(InfiniteContainerStyleAttributeName)]
+        public string InfiniteContainerStyle { get; set; } = LoadMoreDefaults.ContainerStyle;
+        private const string InfiniteContainerStyleAttributeName = "container-style";
         #endregion
 
         /// <inheritDoc/>
@@ -89,7 +97,7 @@ namespace Acme.Helpers.TagHelpers
             routeValues.Add("skip", Skip);
             var url = CreateLink(routeValues);
 
-            var replaceId = ReplaceId ?? context.UniqueId;
+            var replaceId = InfiniteReplaceId ?? context.UniqueId;
             var content = (await context.GetChildContentAsync()).ReplaceStringTokens(Explorer);
             if (string.IsNullOrEmpty(content))
                 content = StringResources.InfiniteLabelText;
@@ -97,16 +105,16 @@ namespace Acme.Helpers.TagHelpers
             FluentTagBuilder builder = new FluentTagBuilder()
                 .StartTag("div")
                     //if there's no replace id specified, set the newly created div as the replacement area
-                    .AttributeIf(string.IsNullOrEmpty(ReplaceId), "Id", replaceId)
-                    .AttributeIf(string.IsNullOrEmpty(ReplaceId), "Style", ContainerStyle)
+                    .AttributeIf(string.IsNullOrEmpty(InfiniteReplaceId), "Id", replaceId)
+                    .AttributeIf(string.IsNullOrEmpty(InfiniteReplaceId), "Style", InfiniteContainerStyle)
                     .ActionIf(Skip < Total, tag =>
                     {
                         tag.Append(new FluentTagBuilder()
                                .AjaxAnchor(url, "replace-with", replaceId, content, new
                                {
                                    @class = context.AllAttributes["class"]?.Value?.ToString(),
-                                   id = Id,
-                                   style = Style
+                                   id = InfiniteId,
+                                   style = InfiniteStyle
                                })
                         );
                     })
