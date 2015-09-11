@@ -17,7 +17,7 @@ namespace Acme.Helpers.TagHelpers
     /// <see cref="ITagHelper"/> Implementation targeting &lt;table&gt; elements with an <c>asp-for</c> attribute.
     /// </summary>
     [TargetElement("table", Attributes = ForAttributeName)]
-    public class TableTagHelper : TagHelper, ISupportTable
+    public class TableTagHelper : TagHelper, ISupportFor, ISupportTable, ISupportPager
     {
         ///<exclude/>
         [HtmlAttributeNotBound, ViewContext]
@@ -60,6 +60,48 @@ namespace Acme.Helpers.TagHelpers
         [HtmlAttributeName(AjaxAttributeName)]
         public bool TableAjax { get; set; } = TableDefaults.Ajax;
         private const string AjaxAttributeName = "ajax";
+
+        #endregion
+
+        #region ISupportPager
+        /// <inheritDoc/>
+        public string PagerClass { get; set; } = PagerDefaults.Class;
+        /// <inheritDoc/>
+        public int PagerLinks { get; set; } = PagerDefaults.Links;
+        /// <inheritDoc/>
+        public HorizontalAlignment PagerHalign { get; set; } = PagerDefaults.Halign;
+        /// <inheritDoc/>
+        public bool PagerShowStatus { get; set; } = PagerDefaults.ShowStatus;
+        /// <inheritDoc/>
+        public bool PagerShowSizes { get; set; } = PagerDefaults.ShowSizes;
+        /// <inheritDoc/>
+        public bool PagerActiveOnly { get; set; } = PagerDefaults.ActiveOnly;
+        /// <inheritDoc/>
+        public string PagerStatusFormat { get; set; } = StringResources.PagerStatusFormat;
+        /// <inheritDoc/>
+        public string PagerSizesFormat { get; set; } = PagerDefaults.Sizes;
+        /// <inheritDoc/>
+        public string PagerPrevText { get; set; }
+        /// <inheritDoc/>
+        public string PagerNextText { get; set; }
+        /// <inheritDoc/>
+        public string PagerFirstText { get; set; }
+        /// <inheritDoc/>
+        public string PagerLastText { get; set; }
+        /// <inheritDoc/>
+        public bool PagerHideFirstLast { get; set; }
+        /// <inheritDoc/>
+        public bool PagerHideNextPrev { get; set; }
+        /// <inheritDoc/>
+        public bool PagerHidePageSkips { get; set; }
+        /// <inheritDoc/>
+        public string PagerFirstIcon { get; set; }
+        /// <inheritDoc/>
+        public string PagerPrevIcon { get; set; }
+        /// <inheritDoc/>
+        public string PagerNextIcon { get; set; }
+        /// <inheritDoc/>
+        public string PagerLastIcon { get; set; }
         #endregion
 
         public TableTagHelper(IHtmlHelper htmlHelper, IModelMetadataProvider metadataProvider, IUrlHelper urlHelper)
