@@ -34,7 +34,7 @@ namespace Acme.Helpers.Website.Models
         {
             Total = total;
             Skip = skip + pageSize;
-            Items = source.ToList(); 
+            Items = source != null ? source.ToList() : new List<T>();
         }
 
         ///<exclude/>
@@ -47,14 +47,14 @@ namespace Acme.Helpers.Website.Models
     }
 
     ///<exclude/>
-    public static class MoreListExtensions
+    public static class InfiniteListExtensions
     {
         ///<exclude/>
-        public static IInfiniteList<T> ToMoreList<T>(this IEnumerable<T> source, int skip, int take)
+        public static IInfiniteList<T> ToInfiniteList<T>(this IEnumerable<T> source, int skip, int take)
             => new InfiniteList<T>(skip, source.Count(), take, source.Skip(skip).Take(take).ToList());
 
         ///<exclude/>
-        public static async Task<IInfiniteList<T>> ToMoreListAsync<T>(this IQueryable<T> source, int skip, int take)
-            => await Task.Run(() => ToMoreList<T>(source, skip, take));
+        public static async Task<IInfiniteList<T>> ToInfinateListAsync<T>(this IQueryable<T> source, int skip, int take)
+            => await Task.Run(() => ToInfiniteList<T>(source, skip, take));
     }
 }

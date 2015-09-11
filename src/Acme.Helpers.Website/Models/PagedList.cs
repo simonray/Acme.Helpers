@@ -55,7 +55,7 @@ namespace Acme.Helpers.Website.Models
             Page = page;
             PageSize = pageSize;
             TotalCount = totalCount;
-            Items = source.ToList();
+            Items = source != null ? source.ToList() : new List<T>();
         }
         ///<exclude />
         public IEnumerator<T> GetEnumerator() { return Items.GetEnumerator(); }

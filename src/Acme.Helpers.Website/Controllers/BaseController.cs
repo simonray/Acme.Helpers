@@ -40,7 +40,7 @@ namespace Acme.Helpers.Website.Controllers
             var total = SampleContext.People.Take(10).Count();
             var model = SampleContext.People.Take(10)
                 .Select(p => new BasicPersonView(p))
-                .ToMoreList((int)skip, _settings.Options.InfinitePageSize);
+                .ToInfiniteList((int)skip, _settings.Options.InfinitePageSize);
 
             System.Threading.Thread.Sleep(1000);
 
