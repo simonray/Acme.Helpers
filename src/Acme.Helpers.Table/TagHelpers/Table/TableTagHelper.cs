@@ -153,8 +153,8 @@ namespace Acme.Helpers.TagHelpers
                         foreach (var col in columns)
                         {
                             tag.StartTag("th")
-                                .CombineAttribute("width", col.Width)
-                                .CombineAttribute("style", col.Style)
+                                .CombineAttributeIf(!string.IsNullOrEmpty(col.Width), "width", col.Width)
+                                .CombineAttributeIf(!string.IsNullOrEmpty(col.Style), "style", col.Style)
                                 .CombineAttributeIf(!col.CellVisible, "style", "display: none")
                                 .Append(GetHeaderValue(col))
                             .EndTag();
@@ -178,8 +178,8 @@ namespace Acme.Helpers.TagHelpers
                                     foreach (var col in columns)
                                     {
                                         cols.StartTag("td")
-                                            .CombineAttribute("width", col.Width)
-                                            .CombineAttribute("style", col.Style)
+                                            .CombineAttributeIf(!string.IsNullOrEmpty(col.Width), "width", col.Width)
+                                            .CombineAttributeIf(!string.IsNullOrEmpty(col.Style), "style", col.Style)
                                             .CombineAttributeIf(!col.CellVisible, "style", "display: none")
                                             .Append(GetColumnValue(row, col))
                                         .EndTag();
