@@ -56,6 +56,9 @@ namespace Acme.Helpers.TagHelpers
         [HtmlAttributeName(PagerAttributeName)]
         public bool TablePagination { get; set; } = TableDefaults.Pagination;
         private const string PagerAttributeName = "pagination";
+        [HtmlAttributeName(PagerPositionAttributeName)]
+        public PagerVerticalAlignment TablePagerPosition { get; set; } = TableDefaults.PagerPosition;
+        private const string PagerPositionAttributeName = "pager-position";
         /// <inheritDoc/>
         [HtmlAttributeName(AjaxAttributeName)]
         public bool TableAjax { get; set; } = TableDefaults.Ajax;
@@ -133,11 +136,15 @@ namespace Acme.Helpers.TagHelpers
         {
             return new FluentTagBuilder()
                 .StartTag("div").Attribute("id", uniqueId)
+                    .ActionIf(TablePagination && (TablePagerPosition == PagerVerticalAlignment.Top || TablePagerPosition == PagerVerticalAlignment.Both), async tag =>
+                    {
+                        tag.Append(await CreatePager(context, uniqueId));
+                    })
                     .StartTag("table", context.AllAttributes.FirstOrDefault(a => a.Name == "class")?.Value?.ToString())
                         .AppendIf(TableShowHeader, tag => { return CreateHeader(columns); })
                         .Append(CreateBody(columns))
                     .EndTag()
-                    .ActionIf(TablePagination, async tag =>
+                    .ActionIf(TablePagination && (TablePagerPosition == PagerVerticalAlignment.Bottom || TablePagerPosition == PagerVerticalAlignment.Both), async tag =>
                     {
                         tag.Append(await CreatePager(context, uniqueId));
                     })
