@@ -20,23 +20,15 @@ namespace Acme.Helpers.TagHelpers
         [HtmlAttributeName(IdAttributeName)]
         public string HeaderId { get; set; }
         private const string IdAttributeName = "id";
-
-        [HtmlAttributeName(VisibleAttributeName)]
-        public bool? HeaderVisible { get; set; }
-        private const string VisibleAttributeName = "visible";
-
         [HtmlAttributeName(CellDisplayFormatAttributeName)]
         public string CellDisplayFormat { get; set; }
         private const string CellDisplayFormatAttributeName = "cell-display-format";
-
         [HtmlAttributeName(NullDisplayTextAttributeName)]
         public string CellNullDisplayText { get; set; }
         private const string NullDisplayTextAttributeName = "cell-null-display-text";
-
         [HtmlAttributeName(UihintAttributeName)]
         public string CellUihint { get; set; }
         private const string UihintAttributeName = "cell-uihint";
-
         [HtmlAttributeName(CellVisibleAttributeName)]
         public bool? CellVisible { get; set; }
         private const string CellVisibleAttributeName = "cell-visible";

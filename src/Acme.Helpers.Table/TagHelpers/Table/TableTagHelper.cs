@@ -160,6 +160,7 @@ namespace Acme.Helpers.TagHelpers
                         foreach (var col in columns)
                         {
                             tag.StartTag("th")
+                                .Attribute("id", col.Id)
                                 .CombineAttributeIf(!string.IsNullOrEmpty(col.Width), "width", col.Width)
                                 .CombineAttributeIf(!string.IsNullOrEmpty(col.Style), "style", col.Style)
                                 .CombineAttributeIf(!col.CellVisible, "style", "display: none")
