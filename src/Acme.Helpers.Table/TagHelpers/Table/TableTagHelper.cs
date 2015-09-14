@@ -238,17 +238,25 @@ namespace Acme.Helpers.TagHelpers
         {
             string result = string.Empty;
 
-            var propertyExplorer = AspFor.ModelExplorer.GetExplorerForModel(row).GetExplorerForProperty(col.For);
-            if (propertyExplorer == null)
-                throw new ArgumentException($"Model does not contain column '{col.For}'");
+            if (string.IsNullOrEmpty(col.CellContent))
+            {
+                var propertyExplorer = AspFor.ModelExplorer.GetExplorerForModel(row).GetExplorerForProperty(col.For);
+                if (propertyExplorer == null)
+                    throw new ArgumentException($"Model does not contain column '{col.For}'");
 
-            object value = propertyExplorer.Model;
-            if (!string.IsNullOrEmpty(col.CellDisplayFormat))
-                result = string.Format(System.Globalization.CultureInfo.CurrentCulture, col.CellDisplayFormat, value);
-            else if (!string.IsNullOrEmpty(col.CellUihint))
-                result = HtmlHelper.Partial($"{Const.DisplayTemplateViewPath}/{col.CellUihint}", value).ToString();
+                object value = propertyExplorer.Model;
+
+                if (!string.IsNullOrEmpty(col.CellDisplayFormat))
+                    result = string.Format(System.Globalization.CultureInfo.CurrentCulture, col.CellDisplayFormat, value);
+                else if (!string.IsNullOrEmpty(col.CellUihint))
+                    result = HtmlHelper.Partial($"{Const.DisplayTemplateViewPath}/{col.CellUihint}", value).ToString();
+                else
+                    result = value?.ToString();
+            }
             else
-                result = value?.ToString();
+            {
+                result = col.CellContent.ReplaceStringTokens(AspFor.ModelExplorer.GetExplorerForModel(row));
+            }
 
             if (result == null)
             {

@@ -16,6 +16,7 @@ namespace Acme.Helpers.TagHelpers
         public string CellNullDisplayText { get; set; }
         public string CellUihint { get; set; }
         public bool CellVisible { get; set; }
+        public string CellContent { get; set; }
 
         public TableColumn()
         {
@@ -35,19 +36,20 @@ namespace Acme.Helpers.TagHelpers
             CellVisible = !meta.HideSurroundingHtml;
         }
 
-        public TableColumn(ThTagHelper th, string content)
+        public TableColumn(ISupportTableHeader th)
             : this()
         {
             Id = th.HeaderId ?? th.AspFor;
             For = th.AspFor;
-            Title = content ?? Id.SplitCamelCase();
+            Title = th.HeaderTitle ?? Id.SplitCamelCase();
             Style = th.Style;
             Width = th.Width;
-            
+
             CellDisplayFormat = th.CellDisplayFormat;
             CellNullDisplayText = th.CellNullDisplayText;
             CellUihint = th.CellUihint;
             CellVisible = th.CellVisible ?? true;
+            CellContent = th.CellContent;
         }
 
         internal void Merge(TableColumn col)
@@ -57,6 +59,7 @@ namespace Acme.Helpers.TagHelpers
             CellNullDisplayText = col.CellNullDisplayText ?? CellNullDisplayText;
             CellUihint = col.CellUihint ?? CellUihint;
             CellVisible = col.CellVisible;
+            CellContent = col.CellContent;
         }
     }
 }

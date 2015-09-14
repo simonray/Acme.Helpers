@@ -8,18 +8,20 @@ namespace Acme.Helpers.TagHelpers
     [TargetElement("th", Attributes = ForAttributeName)]
     public class ThTagHelper : TagHelper, ISupportTableHeader
     {
+        #region ISupportTableHeader
+        /// <inheritDoc/>
         public string Style { get; set; }
+        /// <inheritDoc/>
         public string Width { get; set; }
-        public string Align { get; set; }
-
+        /// <inheritDoc/>
         [HtmlAttributeName(ForAttributeName)]
         public string AspFor { get; set; }
         private const string ForAttributeName = "asp-for";
-
-        #region ISupportTableHeader
         [HtmlAttributeName(IdAttributeName)]
         public string HeaderId { get; set; }
         private const string IdAttributeName = "id";
+        [HtmlAttributeNotBound]
+        public string HeaderTitle { get; set; } // tag content
         [HtmlAttributeName(CellDisplayFormatAttributeName)]
         public string CellDisplayFormat { get; set; }
         private const string CellDisplayFormatAttributeName = "cell-display-format";
@@ -32,6 +34,9 @@ namespace Acme.Helpers.TagHelpers
         [HtmlAttributeName(CellVisibleAttributeName)]
         public bool? CellVisible { get; set; }
         private const string CellVisibleAttributeName = "cell-visible";
+        [HtmlAttributeName(ContentVisibleAttributeName)]
+        public string CellContent { get; set; } // tag attribute
+        private const string ContentVisibleAttributeName = "cell-content";
         #endregion
 
         public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
@@ -44,7 +49,8 @@ namespace Acme.Helpers.TagHelpers
                 throw new ArgumentException($"[<th>] You must supply an '{ForAttributeName}' attribute if you are using '{UihintAttributeName}'. This property value will be passed through to the template");
 
             TagHelperContent content = (await context.GetChildContentAsync());
-            tableOutput.Add(new TableColumn(this, content.IsEmpty ? null : content.GetContent()));
+            HeaderTitle = content.IsEmpty ? null : content.GetContent();
+            tableOutput.Add(new TableColumn(this));
         }
     }
 }
