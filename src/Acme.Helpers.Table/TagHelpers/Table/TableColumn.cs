@@ -9,14 +9,15 @@ namespace Acme.Helpers.TagHelpers
     {
         public string Id { get; set; }
         public string For { get; set; }
+        public int Order { get; set; }
         public string Title { get; set; }
         public string Style { get; set; }
         public string Width { get; set; }
+        public string CellContent { get; set; }
         public string CellDisplayFormat { get; set; }
         public string CellNullDisplayText { get; set; }
         public string CellUihint { get; set; }
         public bool CellVisible { get; set; }
-        public string CellContent { get; set; }
 
         public TableColumn()
         {
@@ -28,6 +29,7 @@ namespace Acme.Helpers.TagHelpers
         {
             Id = meta.PropertyName;
             For = meta.PropertyName;
+            Order = meta.Order;
             Title = meta.DisplayName ?? meta.PropertyName.SplitCamelCase();
 
             CellDisplayFormat = meta.DisplayFormatString;
@@ -41,6 +43,7 @@ namespace Acme.Helpers.TagHelpers
         {
             Id = th.HeaderId ?? th.AspFor;
             For = th.AspFor;
+            Order = th.HeaderOrder;
             Title = th.HeaderTitle ?? Id.SplitCamelCase();
             Style = th.Style;
             Width = th.Width;
