@@ -17,23 +17,34 @@ namespace Acme.Helpers.TagHelpers
         [HtmlAttributeName(ForAttributeName)]
         public string AspFor { get; set; }
         private const string ForAttributeName = "asp-for";
+        /// <inheritDoc/>
         [HtmlAttributeName(IdAttributeName)]
         public string HeaderId { get; set; }
         private const string IdAttributeName = "id";
+        /// <inheritDoc/>
+        [HtmlAttributeName(OrderAttributeName)]
+        public int HeaderOrder { get; set; } = 10000;
+        private const string OrderAttributeName = "order";
+        /// <inheritDoc/>
         [HtmlAttributeNotBound]
         public string HeaderTitle { get; set; } // tag content
+        /// <inheritDoc/>
         [HtmlAttributeName(CellDisplayFormatAttributeName)]
         public string CellDisplayFormat { get; set; }
         private const string CellDisplayFormatAttributeName = "cell-display-format";
+        /// <inheritDoc/>
         [HtmlAttributeName(NullDisplayTextAttributeName)]
         public string CellNullDisplayText { get; set; }
         private const string NullDisplayTextAttributeName = "cell-null-display-text";
+        /// <inheritDoc/>
         [HtmlAttributeName(UihintAttributeName)]
         public string CellUihint { get; set; }
         private const string UihintAttributeName = "cell-uihint";
+        /// <inheritDoc/>
         [HtmlAttributeName(CellVisibleAttributeName)]
         public bool? CellVisible { get; set; }
         private const string CellVisibleAttributeName = "cell-visible";
+        /// <inheritDoc/>
         [HtmlAttributeName(ContentVisibleAttributeName)]
         public string CellContent { get; set; } // tag attribute
         private const string ContentVisibleAttributeName = "cell-content";

@@ -301,7 +301,7 @@ namespace Acme.Helpers.TagHelpers
         {
             context.Items.Add("TableOutput", new List<TableColumn>());
             await context.GetChildContentAsync();
-            return context.Items["TableOutput"] as IList<TableColumn>;
+            return (context.Items["TableOutput"] as IList<TableColumn>).OrderBy(c => c.Order).ToList();
         }
     }
 }
