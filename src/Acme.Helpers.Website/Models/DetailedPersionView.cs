@@ -9,9 +9,13 @@ namespace Acme.Helpers.Website.Models
         public DetailedPersonView(Person p)
             : base(p)
         {
+            Gender = p.Gender;
             Salary = p.Salary;
             Address = p.Address;
         }
+
+        //Enumeration
+        public Gender Gender { get; set; }
 
         //Specify a custom data format
         [DisplayFormat(DataFormatString = "{0:C}")]

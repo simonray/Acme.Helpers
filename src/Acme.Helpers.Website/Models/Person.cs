@@ -17,10 +17,11 @@ namespace Acme.Helpers.Website.Models
         public decimal Salary { get; }
         public PersonAddress Address { get; }
         public string FavoriteColor { get; }
+        public Gender Gender { get; }
 
         public Person() { }
 
-        public Person(int id, string firstName, string lastName, string email, DateTime birthDate, string location, PersonAddress address, decimal salary, string favoriteColor)
+        public Person(int id, string firstName, string lastName, string email, DateTime birthDate, string location, PersonAddress address, decimal salary, string favoriteColor, Gender gender)
         {
             Id = id;
             FirstName = firstName;
@@ -31,6 +32,7 @@ namespace Acme.Helpers.Website.Models
             Address = address;
             Salary = salary;
             FavoriteColor = favoriteColor;
+            Gender = gender;
         }
     }
 }
