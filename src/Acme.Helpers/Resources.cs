@@ -1,6 +1,24 @@
 ﻿namespace Acme.Helpers
 {
     /// <exclude/>
+    internal static partial class TagName
+    {
+        public const string Display = "display";
+        public const string DisplayName = "display-name";
+
+        public const string GithubForkme = "github-forkme";
+        public const string NugetCommand = "nuget-command";
+        public const string NugetPanel = "nuget-panel";
+        public const string Shield = "shield";
+
+        public const string Directory = "directory";
+        public const string Pager = "pager";
+
+        public const string Table = "table";
+        public const string TableTh = "th";
+    }
+
+    /// <exclude/>
     internal static partial class Const
     {
         public const string NonBreakingSpace = "&nbsp;";

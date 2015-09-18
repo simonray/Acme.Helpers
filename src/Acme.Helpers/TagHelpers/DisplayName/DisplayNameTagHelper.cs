@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Acme.Helpers.TagHelpers
 {
-    [TargetElement("display-name", Attributes = ForAttributeName)]
+    [TargetElement(TagName.DisplayName, Attributes = ForAttributeName)]
     public class DisplayNameTagHelper : TagHelper, ISupportFor
     {
         [HtmlAttributeNotBound]
@@ -21,6 +21,11 @@ namespace Acme.Helpers.TagHelpers
         private const string ForAttributeName = "asp-for";
         #endregion
 
+        /// <summary>
+        /// Specify whether the name should be split on case (default: true).
+        /// </summary>
+        public bool Split { get; set; } = true;
+
         public DisplayNameTagHelper(IHtmlHelper htmlHelper)
         {
             HtmlHelper = htmlHelper;
@@ -31,7 +36,10 @@ namespace Acme.Helpers.TagHelpers
             (HtmlHelper as ICanHasViewContext)?.Contextualize(ViewContext);
 
             output.TagName = null;
-            output.Content.SetContent(HtmlHelper.DisplayName(AspFor.Metadata.PropertyName).SplitCamelCase());
+            if (Split)
+                output.Content.SetContent(HtmlHelper.DisplayName(AspFor.Metadata.PropertyName).SplitCamelCase());
+            else
+                output.Content.SetContent(HtmlHelper.DisplayName(AspFor.Metadata.PropertyName));
             output.Content.Append(await context.GetChildContentAsync());
         }
     }

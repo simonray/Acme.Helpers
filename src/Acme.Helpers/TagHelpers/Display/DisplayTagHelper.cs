@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Acme.Helpers.TagHelpers
 {
-    [TargetElement("display", Attributes = ForAttributeName)]
+    [TargetElement(TagName.Display, Attributes = ForAttributeName)]
     public class DisplayTagHelper : TagHelper, ISupportFor
     {
         [HtmlAttributeNotBound, ViewContext]
