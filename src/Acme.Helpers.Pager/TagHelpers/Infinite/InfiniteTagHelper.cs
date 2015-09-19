@@ -5,11 +5,12 @@ using Microsoft.AspNet.Mvc.ModelBinding;
 using Microsoft.AspNet.Mvc.Rendering;
 using Microsoft.AspNet.Razor.Runtime.TagHelpers;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Acme.Helpers.TagHelpers
 {
-    [TargetElement("infinite")]
+    [TargetElement(TagName.Infinite)]
     public class InfiniteTagHelper : TagHelper, ISupportFor, ISupportAnchor, ISupportInfinite
     {
         [ViewContext]
@@ -36,9 +37,17 @@ namespace Acme.Helpers.TagHelpers
 
         #region ISupportInfinite
         /// <inheritDoc/>
+        [HtmlAttributeName(InfiniteContainerStyleAttributeName)]
+        public string InfiniteContainerStyle { get; set; } = LoadMoreDefaults.ContainerStyle;
+        private const string InfiniteContainerStyleAttributeName = "container-style";
+        /// <inheritDoc/>
         [HtmlAttributeName(InfiniteIdAttributeName)]
         public string InfiniteId { get; set; }
         private const string InfiniteIdAttributeName = "id";
+        /// <inheritDoc/>
+        [HtmlAttributeName(InfiniteNoRecordsMessageAttributeName)]
+        public string InfiniteNoRecordsMessage { get; set; } = StringResources.TableNoRecordsText;
+        private const string InfiniteNoRecordsMessageAttributeName = "no-records-message";
         /// <inheritDoc/>
         [HtmlAttributeName(InfiniteReplaceIdAttributeName)]
         public string InfiniteReplaceId { get; set; }
@@ -47,11 +56,12 @@ namespace Acme.Helpers.TagHelpers
         [HtmlAttributeName(InfiniteStyleAttributeName)]
         public string InfiniteStyle { get; set; } = LoadMoreDefaults.Style;
         private const string InfiniteStyleAttributeName = "style";
-        /// <inheritDoc/>
-        [HtmlAttributeName(InfiniteContainerStyleAttributeName)]
-        public string InfiniteContainerStyle { get; set; } = LoadMoreDefaults.ContainerStyle;
-        private const string InfiniteContainerStyleAttributeName = "container-style";
         #endregion
+
+        [HtmlAttributeNotBound]
+        private IDictionary<string, object> RouteValues { get; set; }
+        [HtmlAttributeNotBound]
+        private IDictionary<string, object> AjaxValues { get; set; }
 
         /// <inheritDoc/>
         [HtmlAttributeName(SkipAttributeName)]
@@ -64,10 +74,7 @@ namespace Acme.Helpers.TagHelpers
         private const string TotalAttributeName = "total";
 
         /// <exclude/>
-        private const string RouteAttributePrefix = "asp-route-";
-
-        /// <exclude/>
-        private string[] PossibleSkipParameterNames = { "Skip" };
+        private string[] PossibleSkipParameterNames = { "Skip", "Jump" };
         /// <exclude/>
         private string[] PossibleTotalParameterNames = { "Total", "Count" };
 
@@ -89,13 +96,57 @@ namespace Acme.Helpers.TagHelpers
         {
             output.TagName = null;
 
-            ApplyActionAttributes();
+            ApplyActionAttributes(context);
+            if (string.IsNullOrEmpty(AspController))
+                throw new ArgumentException($"<{output.TagName}> You must specify the '{nameof(AspController).SplitCamelCaseLowerDash()}' attribute");
+
             ApplyPaginationAttributes(context);
 
-            //Get the url
-            var routeValues = output.TrimPrefixedAttributes(RouteAttributePrefix);
-            routeValues.Add("skip", Skip);
+            FluentTagBuilder builder = new FluentTagBuilder();
+            if (Total == 0)
+                builder.Append(InfiniteNoRecordsMessage);
+            else
+                builder = await Create(context, RouteValues);
+
+            output.Content.SetContent(builder);
+        }
+
+        private void ApplyActionAttributes(TagHelperContext context)
+        {
+            //has an action or controller been specified? if not, default
+            if (string.IsNullOrEmpty(AspAction))
+                AspAction = (string)ViewContext.RouteData.Values["action"];
+            if (string.IsNullOrEmpty(AspController))
+                AspController = (string)ViewContext.RouteData.Values["controller"];
+
+            RouteValues = context.TrimPrefixedAttributes(Const.RouteAttributePrefix);
+            AjaxValues = context.FindPrefixedAttributes(Const.AjaxAttributePrefix);
+        }
+
+        private void ApplyPaginationAttributes(TagHelperContext context)
+        {
+            if (!context.AllAttributes.ContainsName(SkipAttributeName) &&
+                !context.AllAttributes.ContainsName(TotalAttributeName))
+            {
+                ModelExplorer explorer = AspFor?.ModelExplorer;
+                if (explorer == null)
+                    explorer = ViewContext.ViewData.ModelExplorer;
+
+                var skip = explorer.GetExplorerForProperty(PossibleSkipParameterNames);
+                var total = explorer.GetExplorerForProperty(PossibleTotalParameterNames);
+
+                if (skip == null || total == null)
+                    throw new ArgumentException($"A model MUST contain values for a skip and total.");
+
+                Skip = Convert.ToInt32(skip.Model);
+                Total = Convert.ToInt32(total.Model);
+            }
+        }
+
+        private async Task<FluentTagBuilder> Create(TagHelperContext context, System.Collections.Generic.IDictionary<string, object> routeValues)
+        {
             var url = CreateLink(routeValues);
+            routeValues.Add("skip", Skip);
 
             var replaceId = InfiniteReplaceId ?? context.UniqueId;
             var content = (await context.GetChildContentAsync()).ReplaceStringTokens(Explorer);
@@ -119,39 +170,7 @@ namespace Acme.Helpers.TagHelpers
                         );
                     })
                 .EndTag();
-
-            output.Content.SetContent(builder);
-        }
-
-        private void ApplyActionAttributes()
-        {
-            //has an action or controller been specified? if not, default
-            if (string.IsNullOrEmpty(AspAction))
-                AspAction = (string)ViewContext.RouteData.Values["action"];
-            if (string.IsNullOrEmpty(AspController))
-                AspController = (string)ViewContext.RouteData.Values["controller"];
-            if (string.IsNullOrEmpty(AspController))
-                throw new ArgumentException($"You must specify the '{nameof(AspController).SplitCamelCase('-').ToLower()}' attribute");
-        }
-
-        private void ApplyPaginationAttributes(TagHelperContext context)
-        {
-            if (!context.AllAttributes.ContainsName(SkipAttributeName) &&
-                !context.AllAttributes.ContainsName(TotalAttributeName))
-            {
-                ModelExplorer explorer = AspFor?.ModelExplorer;
-                if (explorer == null)
-                    explorer = ViewContext.ViewData.ModelExplorer;
-
-                var skip = explorer.GetExplorerForProperty(PossibleSkipParameterNames);
-                var total = explorer.GetExplorerForProperty(PossibleTotalParameterNames);
-
-                if (skip == null || total == null)
-                    throw new ArgumentException($"A model MUST contain values for a skip and total.");
-
-                Skip = Convert.ToInt32(skip.Model);
-                Total = Convert.ToInt32(total.Model);
-            }
+            return builder;
         }
 
         private string CreateLink(object routePrefixedAttributes)

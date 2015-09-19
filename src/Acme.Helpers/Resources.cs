@@ -12,9 +12,13 @@
         public const string Shield = "shield";
 
         public const string Directory = "directory";
+        public const string Infinite = "infinite";
         public const string Pager = "pager";
 
         public const string Table = "table";
+        public const string TableColumn = "column";
+        public const string TableTd = "td";
+        public const string TableHeader = "header";
         public const string TableTh = "th";
     }
 
@@ -23,6 +27,8 @@
     {
         public const string NonBreakingSpace = "&nbsp;";
         public const string DisplayTemplateViewPath = "DisplayTemplates";
+        public const string RouteAttributePrefix = "asp-route-";
+        public const string AjaxAttributePrefix = "data-ajax";
     }
 
     /// <exclude/>
@@ -40,6 +46,7 @@
         public static string PagerLastText = ">>";
 
         public static string InfiniteLabelText = "Load More";
+        public static string InfiniteNoRecordsText = "No records found";
 
         public static string TableNoRecordsText = "No matching records found";
     }

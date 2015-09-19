@@ -9,11 +9,11 @@ namespace Acme.Helpers.Core.Extensions
     internal static partial class ExtensionMethods
     {
         /// <summary>
-        /// Returns all attributes from <paramref name="tagHelperOutput"/>'s.
+        /// Returns all attributes from <paramref name="tagHelperContext"/>'s with the prefix stripped from the attribute name.
         /// </summary>
-        public static IDictionary<string, object> FindPrefixedAttributes(this TagHelperOutput @this, string prefix)
-            => @this.Attributes
+        public static IDictionary<string, object> TrimPrefixedAttributes(this TagHelperContext @this, string prefix)
+            => @this.AllAttributes
                 .Where(attribute => attribute.Name.StartsWith(prefix, StringComparison.OrdinalIgnoreCase))
-                .ToDictionary(d => d.Name, d => d.Value);
+                .ToDictionary(d => d.Name.Replace(prefix, string.Empty), d => d.Value);
     }
 }
