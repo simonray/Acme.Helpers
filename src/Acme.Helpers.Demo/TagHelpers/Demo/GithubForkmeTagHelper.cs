@@ -6,7 +6,7 @@ namespace Acme.Helpers.TagHelpers
     public enum GithubForkmeColor { Red, Green, DarkBlue, Orange, Gray, White, };
     public enum GithubForkmeSide { Left, Right, };
 
-    [TargetElement("github-forkme")]
+    [TargetElement(TagName.GithubForkme)]
     public class GithubForkmeTagHelper : TagHelper
     {
         public string Repository { get; set; }

@@ -4,7 +4,7 @@ using Microsoft.AspNet.Razor.Runtime.TagHelpers;
 
 namespace Acme.Helpers.TagHelpers
 {
-    [TargetElement("nuget-command", Attributes = PackageAttributeName)]
+    [TargetElement(TagName.NugetCommand, Attributes = PackageAttributeName)]
     public class NugetCommandTagHelper : TagHelper
     {
         [HtmlAttributeName(PackageAttributeName)]

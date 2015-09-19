@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace Acme.Helpers.TagHelpers
 {
-    [TargetElement("nuget-panel", Attributes = PackageAttributeName)]
+    [TargetElement(TagName.NugetPanel, Attributes = PackageAttributeName)]
     public class NugetPanelTagHelper : TagHelper
     {
         [HtmlAttributeName(PackageAttributeName)]

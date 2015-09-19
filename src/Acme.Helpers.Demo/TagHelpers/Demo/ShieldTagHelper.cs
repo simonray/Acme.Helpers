@@ -13,8 +13,8 @@ namespace Acme.Helpers.TagHelpers
         GithubIssues, GithubForks, GithubStars, GithubFollowers,
     };
 
-    [TargetElement("shield", Attributes = "subject,type")]
-    [TargetElement("shield", Attributes = "subject,status")]
+    [TargetElement(TagName.Shield, Attributes = "subject,type")]
+    [TargetElement(TagName.Shield, Attributes = "subject,status")]
     public class ShieldTagHelper : TagHelper
     {
         public string Subject { get; set; }
