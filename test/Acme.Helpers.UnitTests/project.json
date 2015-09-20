@@ -1,0 +1,16 @@
+﻿{
+  "frameworks": {
+    "dnx451": { }
+  },
+  "commands": {
+    "test": "xunit.runner.dnx"
+  },
+  "dependencies": {
+    "Acme.Helpers": "1.0.0-beta7",
+    "Acme.Helpers.Demo": "1.0.0-beta7",
+    "Acme.Helpers.Pager": "1.0.0-beta7",
+    "Acme.Helpers.Table": "1.0.0-beta7",
+    "xunit": "2.1.0-rc1-build3168",
+    "xunit.runner.dnx": "2.1.0-beta5-build169"
+  }
+}

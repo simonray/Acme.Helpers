@@ -23,6 +23,10 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Acme.Helpers.Demo", "src\Ac
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Acme.Helpers.Website", "src\Acme.Helpers.Website\Acme.Helpers.Website.xproj", "{7DDDBB1A-C1DD-44F5-9D81-550BFD77CD18}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{233A865C-6A9F-4AC1-ACD5-33E1193256A7}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Acme.Helpers.UnitTests", "test\Acme.Helpers.UnitTests\Acme.Helpers.UnitTests.xproj", "{73BB3B27-D27D-4436-8742-D7FCE46EA979}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +53,10 @@ Global
 		{7DDDBB1A-C1DD-44F5-9D81-550BFD77CD18}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7DDDBB1A-C1DD-44F5-9D81-550BFD77CD18}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7DDDBB1A-C1DD-44F5-9D81-550BFD77CD18}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73BB3B27-D27D-4436-8742-D7FCE46EA979}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73BB3B27-D27D-4436-8742-D7FCE46EA979}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73BB3B27-D27D-4436-8742-D7FCE46EA979}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73BB3B27-D27D-4436-8742-D7FCE46EA979}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -59,5 +67,6 @@ Global
 		{02B3E274-362A-452A-A292-719D8A163678} = {70FFA805-BA25-46DA-ACCA-C13B50540FC5}
 		{0652BF7E-86D4-444A-88FF-459D30A2F2F5} = {70FFA805-BA25-46DA-ACCA-C13B50540FC5}
 		{7DDDBB1A-C1DD-44F5-9D81-550BFD77CD18} = {70FFA805-BA25-46DA-ACCA-C13B50540FC5}
+		{73BB3B27-D27D-4436-8742-D7FCE46EA979} = {233A865C-6A9F-4AC1-ACD5-33E1193256A7}
 	EndGlobalSection
 EndGlobal
