@@ -14,53 +14,12 @@ namespace Acme.Helpers.TagHelpers
     /// <summary>
     /// <see cref="ITagHelper"/>An implementation of a custom &lt;pager&gt; control.
     /// </summary>
-    [TargetElement("pager")]
-    public class PagerTagHelper : TagHelper, ISupportFor, ISupportAnchor, ISupportPager
+    [TargetElement(TagName.Pager)]
+    public class PagerTagHelper : BasePagerTagHelper, ISupportFor, ISupportPager
     {
-        /// <exclude/>
-        [HtmlAttributeNotBound, ViewContext]
-        public ViewContext ViewContext { get; set; }
-        /// <exclude/>
-        [HtmlAttributeNotBound]
-        protected IUrlHelper UrlHelper { get; set; }
-
-        /// <summary>
-        /// Gets or sets the current page.
-        /// </summary>
-        [HtmlAttributeName(PageIndexAttributeName)]
-        public int PageIndex { get; set; } = 0;
-        private const string PageIndexAttributeName = "page-index";
-
-        /// <summary>
-        /// Gets or sets the number of rows shown on the page.
-        /// </summary>
-        [HtmlAttributeName(PageSizeAttributeName)]
-        public int PageSize { get; set; } = PagerDefaults.PageSize;
-        private const string PageSizeAttributeName = "page-size";
-
-        /// <summary>
-        /// Gets or sets the total number of records in the enumeration.
-        /// </summary>
-        [HtmlAttributeName(TotalAttributeName)]
-        public int Total { get; set; } = 0;
-        private const string TotalAttributeName = "total";
-
         #region ISupportFor
         /// <inheritDoc/>
         public ModelExpression AspFor { get; set; }
-        #endregion
-
-        #region ISupportAnchor
-        /// <inheritDoc/>
-        public string AspAction { get; set; }
-        /// <inheritDoc/>
-        public string AspController { get; set; }
-        /// <inheritDoc/>
-        public string AspProtocol { get; set; }
-        /// <inheritDoc/>
-        public string AspHost { get; set; }
-        /// <inheritDoc/>
-        public string AspFragment { get; set; }
         #endregion
 
         #region ISupportPager
@@ -123,14 +82,26 @@ namespace Acme.Helpers.TagHelpers
         public string PagerLastIcon { get; set; }
         #endregion
 
-        /// <exclude/>
-        private const string RouteAttributePrefix = "asp-route-";
-        /// <exclude/>
-        private IDictionary<string, object> RouteValues;
-        /// <exclude/>
-        private const string AjaxAttributePrefix = "data-ajax";
-        /// <exclude/>
-        private IDictionary<string, object> AjaxValues;
+        /// <summary>
+        /// Gets or sets the current page.
+        /// </summary>
+        [HtmlAttributeName(PageIndexAttributeName)]
+        public int PageIndex { get; set; } = 0;
+        private const string PageIndexAttributeName = "page-index";
+
+        /// <summary>
+        /// Gets or sets the number of rows shown on the page.
+        /// </summary>
+        [HtmlAttributeName(PageSizeAttributeName)]
+        public int PageSize { get; set; } = PagerDefaults.PageSize;
+        private const string PageSizeAttributeName = "page-size";
+
+        /// <summary>
+        /// Gets or sets the total number of records in the enumeration.
+        /// </summary>
+        [HtmlAttributeName(TotalAttributeName)]
+        public int Total { get; set; } = 0;
+        private const string TotalAttributeName = "total";
 
         /// <exclude/>
         private string[] PossiblePageIndexParameterNames = { "Page", "Current", "Index", "CurrentPage" };
@@ -146,10 +117,7 @@ namespace Acme.Helpers.TagHelpers
 
         public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
         {
-            RouteValues = output.TrimPrefixedAttributes(RouteAttributePrefix);
-            AjaxValues = output.FindPrefixedAttributes(AjaxAttributePrefix);
-
-            ApplyActionAttributes();
+            await base.ProcessAsync(context, output);
             ApplyPaginationAttributes(context);
             ApplyIconTextAttributes();
 
@@ -157,19 +125,6 @@ namespace Acme.Helpers.TagHelpers
             //if there are no rows then don't show
             if (PageSize != 0 && Total != 0)
                 output.Content.SetContent(Create(PageIndex, Total, PageSize));
-
-            await base.ProcessAsync(context, output);
-        }
-
-        private void ApplyActionAttributes()
-        {
-            //has an action or controller been specified? if not, default
-            if (string.IsNullOrEmpty(AspAction))
-                AspAction = (string)ViewContext.RouteData.Values["action"];
-            if (string.IsNullOrEmpty(AspController))
-                AspController = (string)ViewContext.RouteData.Values["controller"];
-            if (string.IsNullOrEmpty(AspController))
-                throw new ArgumentException($"You must specify the '{nameof(AspController).SplitCamelCase('-').ToLower()}' attribute");
         }
 
         private void ApplyPaginationAttributes(TagHelperContext context)
@@ -242,7 +197,7 @@ namespace Acme.Helpers.TagHelpers
                         var to = pageSize * pageIndex <= Total ? pageSize * pageIndex : Total;
                         var text = new FluentTagBuilder()
                             .StartTag("text").Style("display: inline-block;")
-                                .Append(string.Format($"{PagerStatusFormat}&nbsp;", from, to, totalItems))
+                                .Append(string.Format($"{PagerStatusFormat}{Const.NonBreakingSpace}", from, to, totalItems))
                             .EndTag();
                         tag.Append(text);
                     })
@@ -261,7 +216,7 @@ namespace Acme.Helpers.TagHelpers
             return new FluentTagBuilder()
                 .StartTag("div", "dropdown").Style("display: inline-block;")
                     .StartTag("button", "btn btn-default dropdown-toggle").Attribute("data-toggle", "dropdown")
-                        .Append($"{pageSize}&nbsp;")
+                        .Append($"{pageSize}{Const.NonBreakingSpace}")
                         .StartTag("span", "caret")
                         .EndTag()
                     .EndTag()
@@ -279,7 +234,7 @@ namespace Acme.Helpers.TagHelpers
                     .EndTag()
                 .EndTag()
                 .StartTag("text").Style("display: inline-block;")
-                    .Append($"&nbsp;{StringResources.PagerSizesText}")
+                    .Append($"{Const.NonBreakingSpace}{StringResources.PagerSizesText}")
                 .EndTag();
         }
 

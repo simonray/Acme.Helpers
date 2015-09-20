@@ -11,28 +11,11 @@ using System.Threading.Tasks;
 namespace Acme.Helpers.TagHelpers
 {
     [TargetElement(TagName.Infinite)]
-    public class InfiniteTagHelper : TagHelper, ISupportFor, ISupportAnchor, ISupportInfinite
+    public class InfiniteTagHelper : BasePagerTagHelper, ISupportFor, ISupportInfinite
     {
-        [ViewContext]
-        public ViewContext ViewContext { get; set; }
-        public IUrlHelper UrlHelper { get; set; }
-
         #region ISupportFor
         /// <inheritDoc/>
         public ModelExpression AspFor { get; set; }
-        #endregion
-
-        #region ISupportAnchor
-        /// <inheritDoc/>
-        public string AspAction { get; set; }
-        /// <inheritDoc/>
-        public string AspController { get; set; }
-        /// <inheritDoc/>
-        public string AspProtocol { get; set; }
-        /// <inheritDoc/>
-        public string AspHost { get; set; }
-        /// <inheritDoc/>
-        public string AspFragment { get; set; }
         #endregion
 
         #region ISupportInfinite
@@ -57,11 +40,6 @@ namespace Acme.Helpers.TagHelpers
         public string InfiniteStyle { get; set; } = LoadMoreDefaults.Style;
         private const string InfiniteStyleAttributeName = "style";
         #endregion
-
-        [HtmlAttributeNotBound]
-        private IDictionary<string, object> RouteValues { get; set; }
-        [HtmlAttributeNotBound]
-        private IDictionary<string, object> AjaxValues { get; set; }
 
         /// <inheritDoc/>
         [HtmlAttributeName(SkipAttributeName)]
@@ -94,14 +72,10 @@ namespace Acme.Helpers.TagHelpers
 
         public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
         {
-            output.TagName = null;
-
-            ApplyActionAttributes(context);
-            if (string.IsNullOrEmpty(AspController))
-                throw new ArgumentException($"<{output.TagName}> You must specify the '{nameof(AspController).SplitCamelCaseLowerDash()}' attribute");
-
+            await base.ProcessAsync(context, output);
             ApplyPaginationAttributes(context);
 
+            output.TagName = null;
             FluentTagBuilder builder = new FluentTagBuilder();
             if (Total == 0)
                 builder.Append(InfiniteNoRecordsMessage);
@@ -109,18 +83,6 @@ namespace Acme.Helpers.TagHelpers
                 builder = await Create(context, RouteValues);
 
             output.Content.SetContent(builder);
-        }
-
-        private void ApplyActionAttributes(TagHelperContext context)
-        {
-            //has an action or controller been specified? if not, default
-            if (string.IsNullOrEmpty(AspAction))
-                AspAction = (string)ViewContext.RouteData.Values["action"];
-            if (string.IsNullOrEmpty(AspController))
-                AspController = (string)ViewContext.RouteData.Values["controller"];
-
-            RouteValues = context.TrimPrefixedAttributes(Const.RouteAttributePrefix);
-            AjaxValues = context.FindPrefixedAttributes(Const.AjaxAttributePrefix);
         }
 
         private void ApplyPaginationAttributes(TagHelperContext context)

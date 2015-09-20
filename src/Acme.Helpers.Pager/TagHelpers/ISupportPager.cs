@@ -1,6 +1,8 @@
 ﻿
 namespace Acme.Helpers.TagHelpers
 {
+    public enum PagerVerticalAlignment { Top, Bottom, Both }
+
     /// <summary>
     /// Attributes required to support the pager.
     /// </summary>

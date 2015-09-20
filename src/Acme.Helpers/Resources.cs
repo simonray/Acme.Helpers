@@ -27,8 +27,6 @@
     {
         public const string NonBreakingSpace = "&nbsp;";
         public const string DisplayTemplateViewPath = "DisplayTemplates";
-        public const string RouteAttributePrefix = "asp-route-";
-        public const string AjaxAttributePrefix = "data-ajax";
     }
 
     /// <exclude/>
