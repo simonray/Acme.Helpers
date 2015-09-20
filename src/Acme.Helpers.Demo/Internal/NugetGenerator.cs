@@ -1,5 +1,4 @@
 ﻿using Acme.Helpers.Core.Library;
-using Acme.Helpers.TagHelpers;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -81,7 +80,7 @@ namespace Acme.Helpers.Demo.Internal
                     .StartTag("div", "span8")
                         .StartTag("h1")
                             .Append($"{package} ")
-                            .Append(ShieldGenerator.GenerateShieldMarkup(package, shType.NugetVersion))
+                            .Append(ShieldGenerator.GenerateShieldMarkup(package, ShieldType.NugetVersion))
                         .EndTag()
                         .Tag("hr")
                         .Tag("p", description)

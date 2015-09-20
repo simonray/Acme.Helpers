@@ -3,9 +3,6 @@ using Microsoft.AspNet.Razor.Runtime.TagHelpers;
 
 namespace Acme.Helpers.TagHelpers
 {
-    public enum GithubForkmeColor { Red, Green, DarkBlue, Orange, Gray, White, };
-    public enum GithubForkmeSide { Left, Right, };
-
     [TargetElement(TagName.GithubForkme)]
     public class GithubForkmeTagHelper : TagHelper
     {
